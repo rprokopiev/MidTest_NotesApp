@@ -8,7 +8,15 @@ def Start():
     if a == 1:
         add.EnterNoteData()
     elif a == 2:
-        show.ShowNotes()
+        i = v.GetIntInput(
+            '1 - to see Notes sorted by ID\n2 - to see notes sorted by Time\n')
+        while i not in [1, 2]:
+            i = v.GetIntInput(
+                '1 - to see Notes sorted by ID\n2 - to see notes sorted by Time\n')
+        if i == 1:
+            show.ShowNotes()
+        else:
+            show.ShowNotesTimeFilter()
     elif a == 3:
         i = v.GetIntInput('Select Note ID to show\n')
         show.ShowSpecificNote(i)

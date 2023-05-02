@@ -13,7 +13,7 @@ def EnterNoteData():
         noteSubject = input('Enter subject ')
         noteBody = input('Enter Note Body ')
         with open('NotesList.csv', 'a') as file:
-            file.write(f'{id},{time},{noteSubject},{noteBody}')
+            file.write(f'\n{id},{time},{noteSubject},{noteBody}')
     except FileNotFoundError:
         with open('NotesList.csv', 'w') as file:
             file.write(f'ID,Time,Subject,Body\n')
@@ -73,9 +73,12 @@ def NoteDelete(id):
                 idTmp = line.split(',')[0]
                 time = line.split(',')[1]
                 noteSubject = line.split(',')[2]
-                noteBody = line.split(',')[3]
+                noteBody = line.split(',')[3].rstrip()
                 with open('tmp.csv', 'a') as file1:
-                    file1.write(f'{idTmp},{time},{noteSubject},{noteBody}')
+                    if i == 0:
+                        file1.write(f'{idTmp},{time},{noteSubject},{noteBody}')
+                    else:    
+                        file1.write(f'\n{idTmp},{time},{noteSubject},{noteBody}')
             if i == id:
                 flag = True
     if flag == True:
